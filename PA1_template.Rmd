@@ -88,11 +88,10 @@ ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) + geom_line() + xlab("5
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
-```{r}
+```{r eval=TRUE}
 mostSteps <- stepsbyInterval[which.max(stepsbyInterval$steps),]
 ```
 
-MostSteps: ` r mostSteps `
 
 
 ## Imputing missing values
@@ -177,6 +176,5 @@ meanStepsNoNas <- aggregate(steps ~ interval + day, data=FilledData, FUN=mean)
 ``` {r}
 ggplot(meanStepsNoNas, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5-minute interval") + ylab("Number of Steps") + ggtitle("Average Activity Intervals: Weekdays vs. Weekends")
 ```
-The number of steps for all weekend intervals are high, whereas they appear concentrated in the morning hours for weekdays.
 
 
