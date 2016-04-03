@@ -1,4 +1,6 @@
-# Reproducible Research: Peer Assessment 1
+
+#Reproducible Research: Peer Assessment 1
+
 ## Library Installation and Prep
 *Load knitr package to to process the doucment and the ggplot2 for plotting. 
 
@@ -93,7 +95,7 @@ StepsPerDay
 qplot(StepsPerDay, binwidth=500, xlab="Total Steps Taken Per Day", ylab = "Frequency", main = "Histogram of Total Number of Steps Per Day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
 
 3. Calculate and report the mean and median of the total number of steps taken per day.
 
@@ -102,10 +104,6 @@ qplot(StepsPerDay, binwidth=500, xlab="Total Steps Taken Per Day", ylab = "Frequ
 meanSteps <- mean(StepsPerDay, na.rm=TRUE)
 medianSteps <- median(StepsPerDay, na.rm=TRUE)
 ```
-
-Mean: ` r meanSteps `
-
-Median: ` r medianSteps `
 
 ## What is the average daily activity pattern?
 1. Make a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
@@ -140,7 +138,7 @@ head(stepsbyInterval)
 ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) + geom_line() + xlab("5 Minute Interval") + ylab("Average Number of Steps Taken") + ggtitle("Average Number of Steps by 5-minute Intervals")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
 
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
@@ -150,7 +148,6 @@ ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) + geom_line() + xlab("5
 mostSteps <- stepsbyInterval[which.max(stepsbyInterval$steps),]
 ```
 
-*Most steps occur at: ` r mostSteps `
 
 ## Imputing missing values
 1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with 𝙽𝙰s)
@@ -209,7 +206,7 @@ totalSteps <- tapply(FilledData$steps, FilledData$date, FUN = sum)
 qplot(totalSteps, binwidth = 1000, xlab="Steps Per Day", ylab = "Frequency", main = "Histogram of Steps Per Day with Complete Data" )
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
 
 *Calculate and report the mean and median total number of steps taken per day. 
 
@@ -218,9 +215,6 @@ qplot(totalSteps, binwidth = 1000, xlab="Steps Per Day", ylab = "Frequency", mai
 meanSteps <- mean(totalSteps, na.rm=TRUE)
 medianSteps <- median(totalSteps, na.rm=TRUE)
 ```
-
-MeanSteps: 1.0766189\times 10^{4}
-MedianSteps: 1.0766189\times 10^{4}
 
 * Do these values differ from the estimates from the first part of the assignment? 
 
@@ -254,10 +248,10 @@ meanStepsNoNas <- aggregate(steps ~ interval + day, data=FilledData, FUN=mean)
 ```
 
 ```r
-ggplot(meanStepsNoNas, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5-minute interval") + ylab("Number of Steps") + ggtitle("Average Acitivity Intervals: Weekdays vs. Weekends")
+ggplot(meanStepsNoNas, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5-minute interval") + ylab("Number of Steps") + ggtitle("Average Activity Intervals: Weekdays vs. Weekends")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png)
 The number of steps for all weekend intervals are high, whereas they appear concentrated in the morning hours for weekdays.
 
 
