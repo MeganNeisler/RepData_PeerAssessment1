@@ -152,6 +152,14 @@ mostSteps <- stepsbyInterval[which.max(stepsbyInterval$steps),]
 ```
 
 
+```r
+mostSteps 
+```
+
+```
+##     interval    steps
+## 104      835 206.1698
+```
 
 ## Imputing missing values
 1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with 𝙽𝙰s)
@@ -210,7 +218,7 @@ totalSteps <- tapply(FilledData$steps, FilledData$date, FUN = sum)
 qplot(totalSteps, binwidth = 1000, xlab="Steps Per Day", ylab = "Frequency", main = "Histogram of Steps Per Day with Complete Data" )
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
 
 *Calculate and report the mean and median total number of steps taken per day. 
 
@@ -258,6 +266,6 @@ meanStepsNoNas <- aggregate(steps ~ interval + day, data=FilledData, FUN=mean)
 ggplot(meanStepsNoNas, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5-minute interval") + ylab("Number of Steps") + ggtitle("Average Activity Intervals: Weekdays vs. Weekends")
 ```
 
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-23-1.png)
 
 
