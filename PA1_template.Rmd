@@ -62,6 +62,9 @@ meanSteps <- mean(StepsPerDay, na.rm=TRUE)
 medianSteps <- median(StepsPerDay, na.rm=TRUE)
 ```
 
+MeanSteps: `r meanSteps `
+MedianSteps: `r medianSteps `
+
 ## What is the average daily activity pattern?
 1. Make a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
@@ -79,7 +82,10 @@ head(stepsbyInterval)
 * Make a time series plot of data grouped by intervals of 5 minutes.
 
 ``` {r}
-ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) + geom_line() + xlab("5 Minute Interval") + ylab("Average Number of Steps Taken") + ggtitle("Average Number of Steps by 5-minute Intervals")
+ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) 
+        + geom_line() + xlab("5 Minute Interval") 
+        + ylab("Average Number of Steps Taken") 
+        + ggtitle("Average Number of Steps by 5-minute Intervals")
 ```
 
 
@@ -119,7 +125,7 @@ FilledData$steps <- mapply(ValuetoFill, FilledData$steps, FilledData$interval)
 
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. 
 
-* Determine the total number of steps taken each day, mean, and median for the Filled Data.
+* Determine the total number of steps taken each day for the Filled Data.
 
 ``` {r}
 totalSteps <- tapply(FilledData$steps, FilledData$date, FUN = sum)
@@ -137,6 +143,9 @@ qplot(totalSteps, binwidth = 1000, xlab="Steps Per Day", ylab = "Frequency", mai
 meanSteps <- mean(totalSteps, na.rm=TRUE)
 medianSteps <- median(totalSteps, na.rm=TRUE)
 ```
+
+meanSteps: `r meanSteps `
+medianSteps: `r medianSteps `
 
 * Do these values differ from the estimates from the first part of the assignment? 
 
@@ -167,7 +176,10 @@ FilledData$day <- sapply(FilledData$date, FUN = WeekdayorWeekend)
 meanStepsNoNas <- aggregate(steps ~ interval + day, data=FilledData, FUN=mean)
 ```
 ``` {r}
-ggplot(meanStepsNoNas, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5-minute interval") + ylab("Number of Steps") + ggtitle("Average Activity Intervals: Weekdays vs. Weekends")
+ggplot(meanStepsNoNas, aes(interval, steps)) 
+        + geom_line() + facet_grid(day ~ .) 
+        + xlab("5-minute interval") + ylab("Number of Steps") 
+        + ggtitle("Average Activity Intervals: Weekdays vs. Weekends")
 ```
 The number of steps for all weekend intervals are high, whereas they appear concentrated in the morning hours for weekdays.
 

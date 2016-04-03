@@ -105,6 +105,9 @@ meanSteps <- mean(StepsPerDay, na.rm=TRUE)
 medianSteps <- median(StepsPerDay, na.rm=TRUE)
 ```
 
+MeanSteps: 9354.2295082
+MedianSteps: 10395
+
 ## What is the average daily activity pattern?
 1. Make a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
@@ -135,10 +138,34 @@ head(stepsbyInterval)
 
 
 ```r
-ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) + geom_line() + xlab("5 Minute Interval") + ylab("Average Number of Steps Taken") + ggtitle("Average Number of Steps by 5-minute Intervals")
+ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) 
 ```
 
 ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+
+```r
+        + geom_line() + xlab("5 Minute Interval") 
+```
+
+```
+## Error in +geom_line(): invalid argument to unary operator
+```
+
+```r
+        + ylab("Average Number of Steps Taken") 
+```
+
+```
+## Error in +ylab("Average Number of Steps Taken"): invalid argument to unary operator
+```
+
+```r
+        + ggtitle("Average Number of Steps by 5-minute Intervals")
+```
+
+```
+## Error in +ggtitle("Average Number of Steps by 5-minute Intervals"): invalid argument to unary operator
+```
 
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
@@ -192,7 +219,7 @@ FilledData$steps <- mapply(ValuetoFill, FilledData$steps, FilledData$interval)
 
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. 
 
-* Determine the total number of steps taken each day, mean, and median for the Filled Data.
+* Determine the total number of steps taken each day for the Filled Data.
 
 
 ```r
@@ -215,6 +242,9 @@ qplot(totalSteps, binwidth = 1000, xlab="Steps Per Day", ylab = "Frequency", mai
 meanSteps <- mean(totalSteps, na.rm=TRUE)
 medianSteps <- median(totalSteps, na.rm=TRUE)
 ```
+
+meanSteps: 1.0766189 &times; 10<sup>4</sup>
+medianSteps: 1.0766189 &times; 10<sup>4</sup>
 
 * Do these values differ from the estimates from the first part of the assignment? 
 
@@ -248,10 +278,34 @@ meanStepsNoNas <- aggregate(steps ~ interval + day, data=FilledData, FUN=mean)
 ```
 
 ```r
-ggplot(meanStepsNoNas, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + xlab("5-minute interval") + ylab("Number of Steps") + ggtitle("Average Activity Intervals: Weekdays vs. Weekends")
+ggplot(meanStepsNoNas, aes(interval, steps)) 
 ```
 
 ![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png)
+
+```r
+        + geom_line() + facet_grid(day ~ .) 
+```
+
+```
+## Error in +geom_line(): invalid argument to unary operator
+```
+
+```r
+        + xlab("5-minute interval") + ylab("Number of Steps") 
+```
+
+```
+## Error in +xlab("5-minute interval"): invalid argument to unary operator
+```
+
+```r
+        + ggtitle("Average Activity Intervals: Weekdays vs. Weekends")
+```
+
+```
+## Error in +ggtitle("Average Activity Intervals: Weekdays vs. Weekends"): invalid argument to unary operator
+```
 The number of steps for all weekend intervals are high, whereas they appear concentrated in the morning hours for weekdays.
 
 
