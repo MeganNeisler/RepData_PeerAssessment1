@@ -151,7 +151,6 @@ ggplot(data = stepsbyInterval, aes(x=interval, y=steps)) + geom_line() + xlab("5
 mostSteps <- stepsbyInterval[which.max(stepsbyInterval$steps),]
 ```
 
-MostSteps: ` r mostSteps `
 
 
 ## Imputing missing values
@@ -260,6 +259,5 @@ ggplot(meanStepsNoNas, aes(interval, steps)) + geom_line() + facet_grid(day ~ .)
 ```
 
 ![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png)
-The number of steps for all weekend intervals are high, whereas they appear concentrated in the morning hours for weekdays.
 
 
